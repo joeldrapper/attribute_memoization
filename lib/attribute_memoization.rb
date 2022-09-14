@@ -14,14 +14,15 @@ module AttributeMemoization
     return super(*names) unless block_given?
 
     names.each do |name|
-      private define_method("_calculate_#{name}", &block)
+      instance_variable = :"@#{name}"
 
-      class_eval(<<-RUBY, __FILE__, __LINE__ + 1)
-        def #{name}
-          return @#{name} if defined? @#{name}
-          @#{name} = _calculate_#{name}
+      self.define_method(name) do
+        if self.instance_variable_defined?(instance_variable)
+          return self.instance_variable_get(instance_variable)
+        else
+          self.instance_variable_set(instance_variable, self.instance_exec(&block))
         end
-      RUBY
+      end
     end
   end
 end

@@ -7,7 +7,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     minitest (5.15.0)
-    mocktail (1.1.1)
+    mocha (1.14.0)
     rake (13.0.6)
 
 PLATFORMS
@@ -16,7 +16,7 @@ PLATFORMS
 DEPENDENCIES
   attribute_memoization!
   minitest (~> 5.0)
-  mocktail
+  mocha
   rake (~> 13.0)
 
 BUNDLED WITH
