@@ -9,13 +9,7 @@ attr_reader(:foo) { something_slow }
 # Is a macro for this
 def foo
   return @foo if defined? @foo
-  @foo = _calculate_foo
-end
-
-private
-
-def _calculate_foo
-  something_slow
+  @foo = something_slow
 end
 ```
 
